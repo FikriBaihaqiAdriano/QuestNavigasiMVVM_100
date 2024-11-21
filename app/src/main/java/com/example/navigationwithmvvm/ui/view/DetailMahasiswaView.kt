@@ -29,7 +29,19 @@ fun DetailMahasiswaView(
         Pair("Gender", uiStateMahasiswa.gender),
         Pair("Alamat", uiStateMahasiswa.alamat),
     )
-
+    IconButton(
+        onClick = { navHostController.popBackStack() },
+    ) {
+        Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")
+    }
+    Column (modifier = Modifier.padding(15.dp)){
+        listDataMahasiswa.forEach{items ->
+            CardSection(
+                Judul = items.first,
+                IsiJudul = items.second
+            )
+        }
+    }
 }
 
 @Composable
