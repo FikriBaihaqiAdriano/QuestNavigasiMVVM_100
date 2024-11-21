@@ -33,18 +33,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.example.navigationwithmvvm.model.DataMahasiswa
 
 @Composable
 fun FormMahasiswaView(
     modifier: Modifier = Modifier,
     listJK: List<String>,
-    onSubmitClicked: () -> Unit
+    onSubmitClicked: (MutableList<String>) -> Unit
 ){
     var nama by remember { mutableStateOf("") }
+    var nim by remember { mutableStateOf("") }
     var alamat by remember { mutableStateOf("") }
     var selectedGender by remember { mutableStateOf("") }
 
-    val dataMahasiswa = MutableList<String> = mutableListOf(nama, selectedGender,alamat)
+    val dataMahasiswa : MutableList<String> = mutableListOf(nama, nim, selectedGender,alamat)
 
     Column(
         Modifier
@@ -61,12 +63,26 @@ fun FormMahasiswaView(
                 .fillMaxWidth()
                 .padding(5.dp))
 
+        Spacer(modifier = Modifier.padding(5.dp))
+        OutlinedTextField(value = nim,
+            onValueChange = {nim = it},
+            placeholder = { Text("Masukkan Nim")
+            }, label = {Text("Nim")},
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth().padding(5.dp))
+
+
+
         OutlinedTextField(value = alamat,
             onValueChange = {alamat = it},
-            placeholder = { Text("Masukkan Alamat anda")
-            }, label = { Text("Alamat") }
-            ,modifier = Modifier
-                .fillMaxWidth()
-                .padding(5.dp))
+            placeholder = { Text("Masukkan Alamat")
+            }, label = {Text("Alamat")},
+            modifier = Modifier.fillMaxWidth().padding(5.dp))
+
+        Button(onClick = {onSubmitClicked(dataMahasiswa)})
+        {
+            Text("Simpan")
+        }
+
     }
 }
