@@ -71,7 +71,17 @@ fun FormMahasiswaView(
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth().padding(5.dp))
 
-
+        Row (){
+            listJK.forEach { item ->
+                Row (verticalAlignment = Alignment.CenterVertically){ RadioButton(
+                    selected = selectedGender == item,
+                    onClick = {
+                        selectedGender = item
+                    })
+                    Text(item)
+                }
+            }
+        }
 
         OutlinedTextField(value = alamat,
             onValueChange = {alamat = it},
