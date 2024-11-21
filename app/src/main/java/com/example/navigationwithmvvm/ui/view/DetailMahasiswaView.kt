@@ -46,5 +46,18 @@ fun DetailMahasiswaView(
 
 @Composable
 fun CardSection(Judul:String, IsiJudul:String){
+    Column (horizontalAlignment = Alignment.Start){
 
+        Spacer(modifier = Modifier.padding(20.dp))
+        Row (
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ){
+            Text(text = Judul, modifier = Modifier.weight(0.8f))
+            Text(text = ":", modifier = Modifier.weight(0.2f))
+            Text(text = IsiJudul, modifier = Modifier.weight(2f)
+            )
+        }
+
+    }
 }
